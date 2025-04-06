@@ -3,7 +3,6 @@ package com.bingebox.event_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -17,8 +16,6 @@ import java.util.UUID;
 public class Event {
 
     @Id
-    @GeneratedValue
-    @UuidGenerator
     private UUID id;
 
     private String title;
