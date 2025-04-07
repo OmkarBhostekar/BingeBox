@@ -1,0 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+allprojects {
+    group = 'com.bingebox'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+    }
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'bingebox-monorepo'
+
+include 'event-service'
+include 'commons'
+

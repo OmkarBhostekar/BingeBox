@@ -16,7 +16,6 @@ CREATE TABLE event_shows (
   event_id UUID NOT NULL,
   auditorium_id UUID NOT NULL,
   scheduled_time TIMESTAMP WITH TIME ZONE NOT NULL,
-  base_price INTEGER NOT NULL,
   FOREIGN KEY (event_id) REFERENCES events(id)
 );
 
