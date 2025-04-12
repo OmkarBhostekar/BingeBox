@@ -1,0 +1,44 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package com.bingebox.commons.venue.service;
+
+import "venue.proto";
+
+service AuditoriumService {
+  rpc CreateAuditorium (CreateAuditoriumRequest) returns (AuditoriumResponse);
+  rpc GetAuditorium (GetAuditoriumRequest) returns (AuditoriumResponse);
+  rpc UpdateAuditorium (UpdateAuditoriumRequest) returns (AuditoriumResponse);
+  rpc DeleteAuditorium (DeleteAuditoriumRequest) returns (DeleteAuditoriumResponse);
+}
+
+message CreateAuditoriumRequest {
+  string venue_id = 1;
+  string name = 2;
+  int32 capacity = 3;
+}
+
+message GetAuditoriumRequest {
+  string auditorium_id = 1;
+}
+
+message UpdateAuditoriumRequest {
+  string auditorium_id = 1;
+  optional string name = 2;
+  optional int32 capacity = 3;
+}
+
+message DeleteAuditoriumRequest {
+  string auditorium_id = 1;
+}
+
+message DeleteAuditoriumResponse {
+  string message = 1;
+}
+
+message AuditoriumResponse {
+  string id = 1;
+  string name = 2;
+  int32 capacity = 3;
+  VenueResponse venue = 4; // Reused from venue.proto
+}

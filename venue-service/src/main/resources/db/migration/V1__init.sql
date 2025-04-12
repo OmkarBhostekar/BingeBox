@@ -19,7 +19,7 @@ CREATE TABLE auditoriums (
 );
 
 -- seats table
-CREATE TABLE seats (
+CREATE TABLE auditorium_seats (
   id UUID PRIMARY KEY,
   auditorium_id UUID NOT NULL,
   seat_number VARCHAR(20) NOT NULL,
