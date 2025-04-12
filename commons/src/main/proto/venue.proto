@@ -1,0 +1,52 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package com.bingebox.venueservice;
+
+service VenueService {
+    rpc CreateVenue (CreateVenueRequest) returns (VenueResponse);
+    rpc GetVenue (GetVenueRequest) returns (VenueResponse);
+    rpc UpdateVenue (UpdateVenueRequest) returns (VenueResponse);
+    rpc DeleteVenue (DeleteVenueRequest) returns (DeleteVenueResponse);
+}
+
+message CreateVenueRequest {
+    string name = 1;
+    string address = 2;
+    string pin_code = 3;
+    string contact_number = 4;
+    float latitude = 5;
+    float longitude = 6;
+}
+
+message VenueResponse {
+    string id = 1;
+    string name = 2;
+    string address = 3;
+    string pin_code = 4;
+    string contact_number = 5;
+    float latitude = 6;
+    float longitude = 7;
+}
+
+message GetVenueRequest {
+    string id = 1;
+}
+
+message UpdateVenueRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string address = 3;
+  optional string pin_code = 4;
+  optional string contact_number = 5;
+  optional float latitude = 6;
+  optional float longitude = 7;
+}
+
+message DeleteVenueRequest {
+    string id = 1;
+}
+
+message DeleteVenueResponse {
+    string message = 1;
+}

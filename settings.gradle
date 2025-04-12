@@ -4,3 +4,11 @@ include 'event-service'
 include 'venue-service'
 include 'commons'
 
+
+dependencyResolutionManagement {
+    components {
+        withModule("io.grpc:grpc-netty") {
+            replace("io.grpc:grpc-netty-shaded")
+        }
+    }
+}
