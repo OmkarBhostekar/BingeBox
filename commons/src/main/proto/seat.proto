@@ -1,0 +1,78 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package com.bingebox.commons.venue.service;
+
+import "venue.proto";
+
+// SeatType enum: Different types of seats available in the system
+enum SeatType {
+  REGULAR = 0;
+  PREMIUM = 1;
+  VIP = 2;
+}
+
+// SeatService definition
+service SeatService {
+  rpc CreateSeats (CreateSeatsRequest) returns (CreateSeatsResponse); // Creates multiple seats
+  rpc GetSeat (GetSeatRequest) returns (SeatResponse);
+  rpc UpdateSeat (UpdateSeatRequest) returns (SeatResponse);
+  rpc DeleteSeat (DeleteSeatRequest) returns (DeleteSeatResponse);
+  rpc GetAllSeatsByAuditoriumId (GetAllSeatsByAuditoriumIdRequest) returns (GetAllSeatsByAuditoriumIdResponse);
+}
+
+// CreateSeatsRequest message: Uses a repeated field of Seat objects
+message CreateSeatsRequest {
+  repeated Seat seat_details = 1; // Multiple seats are passed as a list of Seat objects
+  string auditorium_id = 2;
+}
+
+message CreateSeatsResponse {
+  repeated SeatResponse seats = 1; // Response containing a list of created seats
+}
+
+// Seat message: Seat details encapsulated into an object
+message Seat {
+  string seat_number = 1;
+  SeatType seat_type = 2;  // Use SeatType enum here
+}
+
+// GetSeatRequest message to get a specific seat
+message GetSeatRequest {
+  string seat_id = 1;
+}
+
+// UpdateSeatRequest message to update a specific seat's details
+message UpdateSeatRequest {
+  string seat_id = 1;
+  optional string seat_number = 2;
+  optional SeatType type = 3; // Use SeatType enum here
+}
+
+// DeleteSeatRequest message to delete a specific seat
+message DeleteSeatRequest {
+  string seat_id = 1;
+}
+
+// DeleteSeatResponse message
+message DeleteSeatResponse {
+  string message = 1;
+}
+
+// SeatResponse message: Response when getting details of a seat
+message SeatResponse {
+  string id = 1;
+  string seat_number = 2;
+  SeatType seat_type = 3;  // Use SeatType enum here
+  string auditorium_id = 4;
+}
+
+// GetAllSeatsByAuditoriumIdRequest message to get all seats by auditorium_id
+message GetAllSeatsByAuditoriumIdRequest {
+  string auditorium_id = 1;
+}
+
+// GetAllSeatsByAuditoriumIdResponse message: Response containing a list of seats
+message GetAllSeatsByAuditoriumIdResponse {
+  repeated SeatResponse seats = 1; // Repeated field for all seats in the auditorium
+}

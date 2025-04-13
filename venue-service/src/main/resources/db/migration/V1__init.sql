@@ -23,7 +23,7 @@ CREATE TABLE auditorium_seats (
   id UUID PRIMARY KEY,
   auditorium_id UUID NOT NULL,
   seat_number VARCHAR(20) NOT NULL,
-  type VARCHAR(50) NOT NULL,
+  seat_type VARCHAR(50) NOT NULL,
   FOREIGN KEY (auditorium_id) REFERENCES auditoriums(id),
   UNIQUE (auditorium_id, seat_number)  -- Ensuring unique seat numbers within an auditorium
 );

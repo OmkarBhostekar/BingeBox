@@ -25,7 +25,10 @@ public class Seat {
     private UUID id;
 
     private String seatNumber;
-    private SeatType type;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "seat_type", nullable = false)
+    private SeatType seatType;
 
     @ManyToOne
     @JoinColumn(name = "auditorium_id", nullable = false)
