@@ -1,5 +1,22 @@
 package com.bingebox.eventservice.mappers;
 
+import com.bingebox.commons.venue.service.AuditoriumResponse;
+import com.bingebox.eventservice.dto.EventShowResponse;
+import com.bingebox.eventservice.model.EventShow;
+
 public class EventShowMapper {
+
+    public static EventShowResponse toEventShowResponse(
+            AuditoriumResponse auditorium,
+            EventShow eventShow
+    ) {
+        return new EventShowResponse(
+                eventShow.getId().toString(),
+                EventMapper.mapToResponse(eventShow.getEvent()),
+                auditorium,
+                eventShow.getScheduledTime().toString(),
+                eventShow.getBasePrice()
+        );
+    }
 
 }

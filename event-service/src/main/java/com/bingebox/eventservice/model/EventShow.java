@@ -22,8 +22,8 @@ public class EventShow {
     private Event event;
 
     @Column(name = "auditorium_id", nullable = false)
-    private UUID auditoriumId; // Auditorium ID is from VenueService
+    private String auditoriumId; // Auditorium ID is from VenueService
 
     private Instant scheduledTime;
-    private Integer basePrice;
+    private Double basePrice;
 }

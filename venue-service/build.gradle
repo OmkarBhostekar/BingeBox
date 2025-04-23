@@ -1,7 +1,7 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.4.4'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version '3.2.5'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'com.bingebox'
@@ -26,16 +26,22 @@ repositories {
 }
 
 ext {
-	grpcVersion = '1.62.2'
-	springGrpcVersion = '3.1.0.RELEASE'
+	grpcVersion = '1.60.0'
+	springGrpcVersion = '2.15.0.RELEASE'
+	springCloudVersion = '2023.0.0'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 dependencies {
 	implementation project(":commons")
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.flywaydb:flyway-core'
-	implementation 'org.flywaydb:flyway-database-postgresql'
+	implementation 'org.flywaydb:flyway-core:9.16.0'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -47,4 +53,7 @@ dependencies {
 
 	implementation "net.devh:grpc-server-spring-boot-starter:$springGrpcVersion"
 	testImplementation "net.devh:grpc-client-spring-boot-starter:$springGrpcVersion"
+	
+	// Spring Cloud
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 }

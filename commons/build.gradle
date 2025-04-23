@@ -19,8 +19,8 @@ repositories {
 }
 
 ext {
-    grpcVersion = '1.63.0'
-    protobufVersion = '3.25.3'
+    grpcVersion = '1.60.0'
+    protobufVersion = '3.24.0'
 }
 
 dependencies {
