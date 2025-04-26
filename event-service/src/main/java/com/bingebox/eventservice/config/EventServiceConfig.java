@@ -30,8 +30,11 @@ public class EventServiceConfig {
 
     // Method to create the gRPC channel using the instance details
     private ManagedChannel createGrpcChannel(ServiceInstance instance) {
+        // Get the gRPC port from the instance metadata
+        String grpcPort = instance.getMetadata().getOrDefault("grpc.port", "9090");
+        
         return ManagedChannelBuilder
-                .forAddress(instance.getHost(), 9090)
+                .forAddress(instance.getHost(), Integer.parseInt(grpcPort))
                 .usePlaintext()
                 .build();
     }

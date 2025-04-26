@@ -24,6 +24,7 @@ repositories {
 }
 
 ext {
+	grpcVersion = '1.60.0'
 	springGrpcVersion = '2.15.0.RELEASE'
 	springCloudVersion = '2023.0.0'
 }

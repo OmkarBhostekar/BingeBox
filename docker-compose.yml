@@ -17,27 +17,6 @@ services:
     networks:
       - bingebox-network
 
-  event-service:
-    build:
-      context: .
-      dockerfile: event-service/Dockerfile
-    container_name: event-service
-    ports:
-      - "8081:8081"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://event-db:5432/event_service
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=secret
-    depends_on:
-      discovery-service:
-        condition: service_healthy
-      event-db:
-        condition: service_healthy
-    networks:
-      - bingebox-network
-
   venue-service:
     build:
       context: .
@@ -56,6 +35,29 @@ services:
       discovery-service:
         condition: service_healthy
       venue-db:
+        condition: service_healthy
+    networks:
+      - bingebox-network
+
+  event-service:
+    build:
+      context: .
+      dockerfile: event-service/Dockerfile
+    container_name: event-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://event-db:5432/event_service
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=secret
+    depends_on:
+      venue-service:
+        condition: service_started
+      discovery-service:
+        condition: service_healthy
+      event-db:
         condition: service_healthy
     networks:
       - bingebox-network
