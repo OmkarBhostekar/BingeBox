@@ -39,16 +39,11 @@ public class EventShowService {
                 .orElseThrow(() -> new EventNotFoundException("Event not found"));
         AuditoriumResponse auditorium = fetchAuditorium(eventShowRequest.auditoriumId());
 
-        double basePrice = eventShowRequest.seatPricing().stream()
-                .mapToDouble(EventShowRequest.SeatPricing::price)
-                .min()
-                .orElseThrow(() -> new IllegalArgumentException("Seat pricing is empty"));
-
         EventShow eventShow = EventShow.builder()
                 .event(event)
+                .id(UUID.randomUUID())
                 .auditoriumId(eventShowRequest.auditoriumId())
                 .scheduledTime(eventShowRequest.scheduledTime().toInstant(ZoneOffset.UTC))
-                .basePrice(basePrice)
                 .build();
 
         return EventShowMapper.toEventShowResponse(auditorium, eventShowRepository.save(eventShow));
@@ -64,14 +59,6 @@ public class EventShowService {
 
         if (eventShowRequest.scheduledTime() != null) {
             eventShow.setScheduledTime(eventShowRequest.scheduledTime().toInstant(ZoneOffset.UTC));
-        }
-
-        if (eventShowRequest.seatPricing() != null && !eventShowRequest.seatPricing().isEmpty()) {
-            double basePrice = eventShowRequest.seatPricing().stream()
-                    .mapToDouble(EventShowRequest.SeatPricing::price)
-                    .min()
-                    .orElseThrow(() -> new IllegalArgumentException("Seat pricing is empty"));
-            eventShow.setBasePrice(basePrice);
         }
 
         return EventShowMapper.toEventShowResponse(fetchAuditorium(eventShow.getAuditoriumId()), eventShowRepository.save(eventShow));

@@ -1,7 +1,6 @@
 package com.bingebox.eventservice.config;
 
 import com.bingebox.commons.venue.service.AuditoriumServiceGrpc;
-import com.netflix.appinfo.InstanceInfo;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class EventServiceConfig {
@@ -41,6 +41,7 @@ public class EventServiceConfig {
 
     // Bean for AuditoriumServiceBlockingStub
     @Bean
+    @Lazy
     public AuditoriumServiceGrpc.AuditoriumServiceBlockingStub auditoriumServiceBlockingStub() {
         // Get the venue service instance
         ServiceInstance instance = getVenueServiceInstance();

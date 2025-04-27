@@ -25,5 +25,4 @@ public class EventShow {
     private String auditoriumId; // Auditorium ID is from VenueService
 
     private Instant scheduledTime;
-    private Double basePrice;
 }
