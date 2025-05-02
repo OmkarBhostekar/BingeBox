@@ -39,6 +39,25 @@ services:
     networks:
       - bingebox-network
 
+  venue-db:
+    image: postgres:16-alpine
+    container_name: venue-db
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=venue_db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - venue_data:/var/lib/postgresql/data
+    networks:
+      - bingebox-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d venue_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   event-service:
     build:
       context: .
@@ -68,7 +87,7 @@ services:
     ports:
       - "5433:5432"
     environment:
-      - POSTGRES_DB=event_service
+      - POSTGRES_DB=event_db
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=secret
     volumes:
@@ -76,26 +95,47 @@ services:
     networks:
       - bingebox-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d event_service"]
+      test: ["CMD-SHELL", "pg_isready -U root -d event_db"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  venue-db:
-    image: postgres:16-alpine
-    container_name: venue-db
+  booking-service:
+    build:
+      context: .
+      dockerfile: booking-service/Dockerfile
+    container_name: booking-service
     ports:
-      - "5434:5432"
+      - "8083:8083"
     environment:
-      - POSTGRES_DB=venue_service
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://booking-db:5432/booking_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=secret
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      booking-db:
+        condition: service_healthy
+    networks:
+      - bingebox-network
+
+  booking-db:
+    image: postgres:16-alpine
+    container_name: booking-db
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_DB=booking_db
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=secret
     volumes:
-      - venue_data:/var/lib/postgresql/data
+      - booking_data:/var/lib/postgresql/data
     networks:
       - bingebox-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d venue_service"]
+      test: ["CMD-SHELL", "pg_isready -U root -d booking_db"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -103,6 +143,7 @@ services:
 volumes:
   event_data:
   venue_data:
+  booking_data:
 
 networks:
   bingebox-network:

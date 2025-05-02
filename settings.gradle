@@ -4,6 +4,7 @@ include 'event-service'
 include 'venue-service'
 include 'commons'
 include 'discovery-service'
+include 'booking-service'
 
 
 dependencyResolutionManagement {
