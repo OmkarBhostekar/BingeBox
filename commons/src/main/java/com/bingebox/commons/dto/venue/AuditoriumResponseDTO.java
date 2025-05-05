@@ -1,4 +1,4 @@
-package com.bingebox.commons.dto;
+package com.bingebox.commons.dto.venue;
 
 public record AuditoriumResponseDTO(
         String id,

@@ -1,7 +1,7 @@
 package com.bingebox.eventservice.controller;
 
-import com.bingebox.eventservice.dto.EventRequest;
-import com.bingebox.eventservice.dto.EventResponse;
+import com.bingebox.commons.dto.event.EventRequest;
+import com.bingebox.commons.dto.event.EventResponse;
 import com.bingebox.eventservice.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

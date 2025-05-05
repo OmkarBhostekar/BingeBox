@@ -28,7 +28,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://venue-db:5432/venue_service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://venue-db:5432/venue_db
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=secret
     depends_on:
@@ -68,7 +68,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://event-db:5432/event_service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://event-db:5432/event_db
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=secret
     depends_on:

@@ -1,7 +1,7 @@
 package com.bingebox.eventservice.mappers;
 
-import com.bingebox.eventservice.dto.EventRequest;
-import com.bingebox.eventservice.dto.EventResponse;
+import com.bingebox.commons.dto.event.EventRequest;
+import com.bingebox.commons.dto.event.EventResponse;
 import com.bingebox.eventservice.model.Event;
 
 import java.time.Instant;

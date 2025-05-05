@@ -1,4 +1,4 @@
-package com.bingebox.eventservice.dto;
+package com.bingebox.commons.dto.event;
 
 import com.bingebox.commons.enums.SeatType;
 import com.fasterxml.jackson.annotation.JsonProperty;

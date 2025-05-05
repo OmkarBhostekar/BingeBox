@@ -1,4 +1,4 @@
-package com.bingebox.eventservice.dto;
+package com.bingebox.commons.dto.event;
 
 public record EventRequest(
     String title,

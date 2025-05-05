@@ -2,7 +2,7 @@ package com.bingebox.eventservice.mappers;
 
 import com.bingebox.commons.mappers.AuditoriumMapper;
 import com.bingebox.commons.venue.service.AuditoriumResponse;
-import com.bingebox.eventservice.dto.EventShowResponse;
+import com.bingebox.commons.dto.event.EventShowResponse;
 import com.bingebox.eventservice.model.EventShow;
 
 public class EventShowMapper {

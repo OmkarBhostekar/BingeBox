@@ -1,6 +1,6 @@
 package com.bingebox.commons.mappers;
 
-import com.bingebox.commons.dto.AuditoriumResponseDTO;
+import com.bingebox.commons.dto.venue.AuditoriumResponseDTO;
 import com.bingebox.commons.venue.service.AuditoriumResponse;
 
 public class AuditoriumMapper {

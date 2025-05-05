@@ -1,7 +1,6 @@
-package com.bingebox.eventservice.dto;
+package com.bingebox.commons.dto.event;
 
-import com.bingebox.commons.dto.AuditoriumResponseDTO;
-import com.bingebox.commons.venue.service.AuditoriumResponse;
+import com.bingebox.commons.dto.venue.AuditoriumResponseDTO;
 
 
 public record EventShowResponse(

@@ -1,7 +1,7 @@
 package com.bingebox.eventservice.service;
 
-import com.bingebox.eventservice.dto.EventRequest;
-import com.bingebox.eventservice.dto.EventResponse;
+import com.bingebox.commons.dto.event.EventRequest;
+import com.bingebox.commons.dto.event.EventResponse;
 import com.bingebox.eventservice.mappers.EventMapper;
 import com.bingebox.eventservice.model.Event;
 import com.bingebox.eventservice.repository.EventRepository;

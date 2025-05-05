@@ -1,6 +1,6 @@
 package com.bingebox.commons.mappers;
 
-import com.bingebox.commons.dto.VenueResponseDTO;
+import com.bingebox.commons.dto.venue.VenueResponseDTO;
 import com.bingebox.commons.venue.service.VenueResponse;
 
 public class VenueMapper {
